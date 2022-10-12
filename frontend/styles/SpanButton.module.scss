@@ -1,0 +1,25 @@
+.Btn-Wrap {
+   background: #ffffff;
+   border: 1px solid #bbd1e8;
+   border-radius: 24px;
+   width: 120px;
+   height: 44px;
+   margin-right: 30px;
+
+   &:hover {
+      background: #bbd1e8;
+      span {
+         color: #ffffff;
+      }
+   }
+   span {
+      color: #bbd1e8;
+      width: 120px;
+      height: 44px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 100;
+      font-size: 20px;
+      line-height: 24px;
+   }
+}
