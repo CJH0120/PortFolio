@@ -1,12 +1,7 @@
-import type { NextPage } from 'next'
-
+import type { NextPage } from "next"
 
 const Home: NextPage = () => {
-  return (
-   <div>
-      시작
-    </div>
-  )
+  return <div>시작</div>
 }
 
 export default Home
