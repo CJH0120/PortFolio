@@ -1,27 +1,111 @@
 .Wrap {
-   width: 1440px;
-   height: auto;
+   background-color: #fff;
+   height: 100vh;
    margin: 0 auto;
 
+   .Contain {
+      width: 90em;
+      margin: 0 auto;
+      padding-top: 3em;
+      position: relative;
+      height: 880px;
+
+      .HeaderItem {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+         .HeaderItem-Categories {
+            display: flex;
+            align-items: center;
+            position: relative;
+         }
+      }
+      .UIUX {
+         position: absolute;
+         border: 1px solid #0000ff;
+         width: 93.75em;
+         height: 50px;
+         left: -2%;
+         border-radius: 16px;
+
+         .UIUX-2 {
+            position: absolute;
+            top: 30px;
+            left: -1%;
+            width: 96em;
+            height: 20px;
+            background-color: #fff;
+         }
+      }
+      .UIUX-middle {
+         width: 1500px;
+         left: -30px;
+         top: 250px;
+         height: 450px;
+         position: absolute;
+         border-right: 1px solid #0000ff;
+         border-left: 1px solid #0000ff;
+      }
+      .Footer {
+         position: absolute;
+         border: 1px solid #0000ff;
+         width: 93.75em;
+         height: 50px;
+         left: -2%;
+         border-radius: 16px;
+         bottom: 0;
+         .UIUX-2 {
+            position: absolute;
+            left: -1%;
+            width: 96em;
+            top: -10px;
+            height: 30px;
+            background-color: #fff;
+         }
+      }
+   }
+   //
+   .Content-Wrap {
+      margin: 0 auto;
+      width: 1400px;
+      .Wise-Saying {
+         text-align: right;
+         color: #0000ff;
+         margin-top: 50px;
+         p {
+            padding: 0;
+            margin: 0;
+         }
+         .Saying {
+            font-size: 15px;
+            color: #0000cc;
+         }
+      }
+      .Content-Wrap-Item {
+         height: 100%;
+         padding-top: 40px;
+      }
+   }
    .User-Wrap {
-      padding: 69px 80px;
+      height: 650px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       .User-Info {
-         width: 307px;
-         height: 366px;
+         border-radius: 12px 12px 0px 0px;
+         width: 350px;
+         height: 100%;
+         overflow: hidden;
          .User-Info-Photo {
             position: relative;
             background: #ffffff;
-            border-radius: 12px 12px 0px 0px;
-            overflow: hidden;
-            width: 307px;
+            width: inherit;
             height: 280px;
          }
          .User-Info-Text {
-            width: 307px;
-            height: 87px;
+            border: 1px outset #0000ff;
+            width: inherit;
+            height: 84px;
             background: #ffffff;
             border-top: 1px solid #dddd;
             text-align: center;
@@ -32,17 +116,33 @@
                height: 47px;
             }
          }
+         .User-Info-Intro {
+            padding: 20px;
+            border: 1px solid;
+            height: 250px;
+            text-align: center;
+            .User-Info-Intro-About-Me {
+               font-size: 30px;
+            }
+            .User-Info-Intro-About-Me-Contnet {
+               text-align: left;
+               div {
+                  margin-top: 5px;
+                  border-bottom: 1px solid;
+                  padding: 5px;
+                  span {
+                     margin-right: 50px;
+                  }
+               }
+            }
+         }
       }
       .User-MarkDown {
+         border: 1px outset black;
          width: 651px;
-         height: 367px;
+         height: 530px;
          background: #ffffff;
          border-radius: 12px;
       }
-   }
-   .BtnWrap {
-      margin: 10px auto;
-      width: 1200px;
-      display: flex;
    }
 }

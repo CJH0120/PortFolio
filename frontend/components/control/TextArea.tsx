@@ -20,9 +20,10 @@ export const TextArea = ({ Text }: TextAreaProps) => {
          <div className={cx("Wrap-sub")}>
             <div>
                <textarea
-                  rows={1}
+                  rows={2}
                   className={cx("TextArea", isClick ? "Act" : "NotAct")}
-                  maxLength={80}
+                  maxLength={352}
+                  
                   onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => {
                      ;(e.code === `Enter` || e.code === `NumpadEnter`) &&
                         setAreaValue(e.currentTarget.value)

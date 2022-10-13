@@ -1,13 +1,16 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from "next"
 
-type Data = {
-  name: string
-}
+const mysql = require("mysql")
+const dbconfig = require("./db/db")
+const connection = mysql.createConnection(dbconfig)
+export default function F(req: NextApiRequest, res: NextApiResponse) {
+   connection.connect()
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
+   connection.query(
+      "SELECT count(*) from  User_Table",
+      (error, rows, fields) => {
+         if (error) throw error
+         console.log("User info is: ", rows)
+      }
+   )
 }

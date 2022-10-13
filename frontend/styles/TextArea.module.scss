@@ -1,18 +1,20 @@
 .Wrap {
-   padding: 37.5px 62.5px;
    position: relative;
+   height: 100%;
    .Wrap-sub {
       display: flex;
       justify-content: center;
       align-items: center;
    }
    .TextArea {
-      width: 526px;
-      height: 300px;
+      padding-top: 25px;
+      width: 600px;
+      height: 526px;
       margin: 0 auto;
-      font-size: 40px;
+      font-size: 45px;
       overflow: hidden;
       resize: none;
+      font-size: 30px;
       &:focus {
          outline: none;
       }
@@ -25,14 +27,12 @@
       display: block;
    }
    .ReadTextArea {
+      padding-top: 25px;
       overflow: hidden;
-      overflow-wrap: break-word;
-      resize: none;
-      width: 526px;
-      height: 300px;
-      border: none;
-      font-size: 40px;
-      white-space: pre-line;
+      width: 600px;
+      height: 505px;
+      font-size: 30px;
+      word-break:break-all
       &:focus {
          outline: none;
       }
