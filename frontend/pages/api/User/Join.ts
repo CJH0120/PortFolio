@@ -1,21 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import InsertQuery, { db } from "../db/db"
 
-const mysql = require("mysql")
-const dbconfig = require("./Join")
-const connection = mysql.createConnection(dbconfig)
 export default function F(req: NextApiRequest, res: NextApiResponse) {
-   connection.connect()
    if (req.method === "POST") {
-      let sql =
-         "INSERT INTO User_Table (User_Id,User_Pw) VALUES (" +
-         req.body.UserId +
-         ", " +
-         req.body.userPw +
-         ")"
-      connection.query(sql, function (err, result) {
-         if (err) throw err
-         console.log("1 record inserted")
-      })
-      connection.end()
+      let ID = req?.body.UserId
+      let PW = req?.body.userPw
+      InsertQuery(ID, PW)
+         .then((response) => {
+            console.log(response)
+            res.json(true)
+         })
+         .catch((error) => {
+            res.json(error)
+            // res.status(405).end()
+         })
    }
 }
