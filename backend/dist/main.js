@@ -5,7 +5,7 @@ const platform_fastify_1 = require("@nestjs/platform-fastify");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, new platform_fastify_1.FastifyAdapter());
-    await app.listen(3000);
+    await app.listen(3333);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

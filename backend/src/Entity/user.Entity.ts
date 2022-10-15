@@ -2,15 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryColumn,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-// import { User_Info } from './userInfoentity'import {} from '@nestjs/common';
-// 엔티티  name : 테이블 이름
+import { User_Info } from './user.Info.entity';
+
 @Entity({ name: 'User_Table' })
 export class User_Table {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  User_Num: string;
 
   @Column()
   User_Id: string;
@@ -19,5 +19,8 @@ export class User_Table {
   User_Pw: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  User_regDate: Date;
+
+  @OneToMany(() => User_Info, (user_info) => user_info.User_Num)
+  user_infos: User_Info[];
 }

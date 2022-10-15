@@ -1,6 +1,8 @@
+import { User_Info } from './user.Info.entity';
 export declare class User_Table {
-    id: string;
+    User_Num: string;
     User_Id: string;
     User_Pw: string;
-    createdAt: Date;
+    User_regDate: Date;
+    user_infos: User_Info[];
 }

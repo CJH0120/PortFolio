@@ -6,6 +6,10 @@ const nextConfig = {
       return [
          {
             source: "/:path*",
+            destination: "http://localhost:3333/:path*",
+         },
+         {
+            source: "/:path*",
             destination: "https://cdn.huffingtonpost.kr/:path*",
          },
       ]

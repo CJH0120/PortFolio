@@ -1,6 +1,7 @@
 import classNames from "classnames/bind"
 import Styles from "@Style/Login.module.scss"
 import { KeyboardEventHandler, useState } from "react"
+import { error } from "console"
 
 type LoginProps = {
    onClick?: () => any
@@ -46,16 +47,28 @@ export const Login = ({ onClick }: LoginProps) => {
                      id=""
                      className={cx("Login-Content-submit")}
                      onClick={() => {
-                        fetch("/api/User/Join", {
+                        fetch("/Join", {
                            method: "POST",
                            headers: {
                               "Content-Type": "application/json",
                            },
                            body: JSON.stringify({
-                              UserId: userId,
-                              userPw: userPw,
+                              User_Id: userId,
+                              User_Pw: userPw,
                            }),
-                        }).then((response) => console.log(response))
+                        })
+                           .then((res) => {
+                              //fetch를 통해 받아온 res객체 안에
+                              //ok 프로퍼티가 있음
+                              if (!res.ok) {
+                                 throw res.text
+                              }
+                              return res.json()
+                           })
+                           .then((data) => console.log(data))
+                           .catch((err) => {
+                              console.log(err)
+                           })
                      }}
                   />
                </div>
@@ -63,4 +76,11 @@ export const Login = ({ onClick }: LoginProps) => {
          </div>
       </div>
    )
+}
+
+const SuccessBox = () => {
+   return <div>회원가입 성공</div>
+}
+const ErrBox = () => {
+   return <div>이미 가입된 아이디가 있습니다</div>
 }
