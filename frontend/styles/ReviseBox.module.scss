@@ -1,0 +1,62 @@
+.Wrap {
+   text-align: center;
+   margin-right: 40px;
+   position: relative;
+   .Btn-Text {
+      overflow: hidden;
+      width: 150px;
+      height: 39px;
+
+      .Not_Active {
+         display: none;
+      }
+      .textarea {
+         resize: none;
+         font-size: inherit;
+         width: 150px;
+         height: 40px;
+         overflow: hidden;
+
+         &.Medium {
+            font-size: 32px;
+         }
+         &.Small {
+            font-size: 25px;
+         }
+      }
+      button {
+         cursor: pointer;
+
+         height: 40px;
+         padding: 0;
+         margin: 0;
+         border: none;
+         background-color: inherit;
+         &.Medium {
+            font-size: 40px;
+            color: #a40000;
+         }
+         &.Small {
+            font-size: 25px;
+            &:hover {
+               color: #a40000;
+            }
+          
+          
+         }
+         &.bolde {
+            font-weight: bolder;
+         }
+      }
+   }
+   .Revise {
+      position: absolute;
+      top:  70px;
+      &.medium {
+         left: 42px;
+      }
+      &.small {
+         left: 42px;
+      }
+   }
+}

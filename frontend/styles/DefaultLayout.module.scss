@@ -1,0 +1,58 @@
+.Wrap {
+   margin: 0 auto;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   .Contain {
+      width: 1400px;
+      height: 800px;
+      border-radius: 48px;
+      background-color: #ff9500;
+      padding: 50px;
+      .HeaderItem {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         border-bottom: 2px solid;
+         .HeaderItem-Logo {
+            margin-left: 40px;
+         }
+         .Header-SubWrap {
+            display: flex;
+            align-items: center;
+            margin-right: 40px;
+            height: 60px;
+            justify-content: space-between;
+            .HeaderItem-Categories {
+               align-items: center;
+               display: flex;
+            }
+            .HeaderItem-Login {
+               width: 150px;
+               text-align: center;
+               height: 45px;
+               button {
+                  width: 100px;
+                  padding: 5px;
+                  height: 40px;
+                  margin: 0;
+                  border-radius: 48px;
+                  color: white;
+                  border: none;
+
+                  font-size: 19px;
+                  background-color: #940f0f;
+               }
+            }
+         }
+      }
+
+      .Main-Item {
+         height: 600px;
+         margin-top: 60px;
+         display: flex;
+      }
+   }
+}

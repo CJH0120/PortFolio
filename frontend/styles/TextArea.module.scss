@@ -1,45 +1,31 @@
 .Wrap {
-   position: relative;
-   height: 100%;
-   .Wrap-sub {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
    .TextArea {
-      padding-top: 25px;
-      width: 600px;
-      height: 526px;
-      margin: 0 auto;
-      font-size: 45px;
-      overflow: hidden;
+      margin-top: 20px;
+      width: 100%;
       resize: none;
-      font-size: 30px;
-      &:focus {
-         outline: none;
-      }
-   }
-
-   .Act {
-      display: none;
-   }
-   .NotAct {
-      display: block;
+      height: 50px;
+      font-size: 20px;
    }
    .ReadTextArea {
-      padding-top: 25px;
-      overflow: hidden;
-      width: 600px;
-      height: 505px;
-      font-size: 30px;
-      word-break:break-all
-      &:focus {
-         outline: none;
-      }
+      margin-top: 25px;
+      width: 100%;
+      resize: none;
+      height: 50px;
+      font-size: 20px;
+   }
+   .Act {
+      display: block;
+   }
+   .NotAct {
+      display: none;
    }
    .BTN {
       position: absolute;
-      bottom: -10%;
-      left: 45%;
+      bottom: -15px;
+      width: 100px;
+      height: 30px;
+      left: 140px;
+      background: inherit;
+      border: 1px solid;
    }
 }

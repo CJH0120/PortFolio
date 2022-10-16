@@ -11,7 +11,7 @@ export const TextArea = ({ Text }: TextAreaProps) => {
    const [areaValue, setAreaValue] = useState<string>(
       Text ? Text : "작성된 코멘트가 없습니다"
    )
-   const [isClick, setIsClick] = useState<boolean>(true)
+   const [isClick, setIsClick] = useState<boolean>(false)
    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       setIsClick(!isClick)
    }
@@ -23,7 +23,6 @@ export const TextArea = ({ Text }: TextAreaProps) => {
                   rows={2}
                   className={cx("TextArea", isClick ? "Act" : "NotAct")}
                   maxLength={352}
-                  
                   onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => {
                      ;(e.code === `Enter` || e.code === `NumpadEnter`) &&
                         setAreaValue(e.currentTarget.value)
@@ -39,7 +38,7 @@ export const TextArea = ({ Text }: TextAreaProps) => {
             </div>
          </div>
          <button onClick={handleClick} className={cx("BTN")}>
-            {isClick ? "수정하기" : "저장하기"}
+            {isClick ? "저장하기" : "수정하기"}
          </button>
       </div>
    )
