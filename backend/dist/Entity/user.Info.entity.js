@@ -15,8 +15,8 @@ const user_entity_1 = require("./user.entity");
 let User_Info = class User_Info {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
-    __metadata("design:type", String)
+    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
+    __metadata("design:type", Number)
 ], User_Info.prototype, "User_Num", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

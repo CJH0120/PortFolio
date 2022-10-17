@@ -5,13 +5,14 @@ import dynamic from "next/dynamic"
 import { useState } from "react"
 import classNames from "classnames/bind"
 import Styles from "@Style/Markdown.module.scss"
+import { LoginStore } from "store/Idstore"
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
    ssr: false,
 })
 const MarkDown: NextPage = () => {
    const cx = classNames.bind(Styles)
+   const { Login, setLogin } = LoginStore()
 
-   const [islogin, setIsLogin] = useState<boolean>(true)
    const [md, setMd] = useState<string | undefined>("# Hello World")
    const [setting, setSetting] = useState<boolean>(false)
    return (
@@ -35,7 +36,7 @@ const MarkDown: NextPage = () => {
                minHeight={500}
             />
          </div>
-         {islogin && (
+         {Login && (
             <button
                onClick={() => {
                   setSetting(!setting)

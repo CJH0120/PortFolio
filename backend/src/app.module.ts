@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 import { User_Table } from './entity/user.entity';
 import { User_Info } from './entity/user.Info.entity';
-import { AuthModule } from './user/User.Join.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -19,6 +19,7 @@ import { AuthModule } from './user/User.Join.module';
       entities: [User_Table, User_Info],
       synchronize: false,
     }),
+    UsersModule,
     AuthModule,
   ],
 

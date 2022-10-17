@@ -1,16 +1,17 @@
 import classNames from "classnames/bind"
 import Styles from "@Style/Login.module.scss"
-import { KeyboardEventHandler, useState } from "react"
+import { useState } from "react"
 import { error } from "console"
+import { LoginStore, NickNamestore } from "store/Idstore"
 
 type LoginProps = {
    onClick?: () => any
 }
-export const Login = ({ onClick }: LoginProps) => {
+export const LoginPage = ({ onClick }: LoginProps) => {
+   const { Login, setLogin } = LoginStore()
    const [userId, setUserId] = useState<string>("")
    const [userPw, setUserPw] = useState<string>("")
-
-   console.log(userId)
+   const { Nickname, setNickname } = NickNamestore()
    const cx = classNames.bind(Styles)
    return (
       <div className={cx("Wrap")}>
@@ -47,9 +48,10 @@ export const Login = ({ onClick }: LoginProps) => {
                      id=""
                      className={cx("Login-Content-submit")}
                      onClick={() => {
-                        fetch("/Join", {
+                        fetch(`/api/auth/Login`, {
                            method: "POST",
                            headers: {
+                              Accept: "application.json",
                               "Content-Type": "application/json",
                            },
                            body: JSON.stringify({
@@ -57,17 +59,20 @@ export const Login = ({ onClick }: LoginProps) => {
                               User_Pw: userPw,
                            }),
                         })
-                           .then((res) => {
-                              //fetch를 통해 받아온 res객체 안에
-                              //ok 프로퍼티가 있음
-                              if (!res.ok) {
-                                 throw res.text
+                           .then((response) => {
+                              // reponse가 ok가 아닐 때
+                              if (!response.ok) {
+                                 return response.text().then((response) => {
+                                    throw new Error(response)
+                                 })
                               }
-                              return res.json()
+                              return response.json()
                            })
-                           .then((data) => console.log(data))
+                           .then((result) => {
+                              alert(`회원가입 완료`)
+                           })
                            .catch((err) => {
-                              console.log(err)
+                              console.log("caught it!", err)
                            })
                      }}
                   />
@@ -76,11 +81,4 @@ export const Login = ({ onClick }: LoginProps) => {
          </div>
       </div>
    )
-}
-
-const SuccessBox = () => {
-   return <div>회원가입 성공</div>
-}
-const ErrBox = () => {
-   return <div>이미 가입된 아이디가 있습니다</div>
 }

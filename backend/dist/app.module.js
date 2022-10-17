@@ -11,9 +11,10 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const auth_module_1 = require("./auth/auth.module");
 const user_entity_1 = require("./entity/user.entity");
 const user_Info_entity_1 = require("./entity/user.Info.entity");
-const User_Join_module_1 = require("./user/User.Join.module");
+const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -29,7 +30,8 @@ AppModule = __decorate([
                 entities: [user_entity_1.User_Table, user_Info_entity_1.User_Info],
                 synchronize: false,
             }),
-            User_Join_module_1.AuthModule,
+            users_module_1.UsersModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

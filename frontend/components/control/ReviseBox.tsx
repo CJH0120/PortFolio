@@ -10,6 +10,7 @@ import {
 import React from "react"
 
 import Link from "next/link"
+import { LoginStore } from "store/Idstore"
 interface ReviseBoxProps {
    FieldType: string
    Text?: string
@@ -32,7 +33,8 @@ const ReviseBox = React.forwardRef(
       const cx = classNames.bind(Styles)
       const [isChange, setIsChange] = useState<boolean>(false)
       const [textVal, setTextVal] = useState<string>(Text)
-      const [isLogin, setIsLogin] = useState<boolean>(false)
+      const { Login, setLogin } = LoginStore()
+
       return (
          <div className={cx("Wrap")} onClick={handleClick}>
             <div className={cx("Btn-Text")}>
@@ -61,7 +63,7 @@ const ReviseBox = React.forwardRef(
                />
             </div>
 
-            {isLogin && (
+            {Login && (
                <div
                   className={cx(
                      "Revise",

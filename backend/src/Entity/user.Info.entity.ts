@@ -4,7 +4,6 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -12,8 +11,8 @@ import { User_Table } from './user.entity';
 
 @Entity({ name: 'User_Info' })
 export class User_Info {
-  @PrimaryGeneratedColumn('uuid')
-  User_Num: string;
+  @PrimaryGeneratedColumn('increment')
+  User_Num: number;
 
   @Column()
   User_Phone: string;

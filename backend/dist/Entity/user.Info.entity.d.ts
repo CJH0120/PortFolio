@@ -1,6 +1,6 @@
 import { User_Table } from './user.entity';
 export declare class User_Info {
-    User_Num: string;
+    User_Num: number;
     User_Phone: string;
     User_Text: string;
     User_Birth: string;

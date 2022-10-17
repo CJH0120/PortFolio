@@ -10,17 +10,25 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../entity/user.entity");
-const Auth_controller_1 = require("./Auth.controller");
-const Auth_Service_1 = require("./Auth.Service");
+const auth_contorller_1 = require("./auth.contorller");
+const auth_service_1 = require("./auth.service");
+const users_service_1 = require("../users/users.service");
+const jwt_1 = require("@nestjs/jwt");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User_Table])],
-        exports: [Auth_Service_1.AuthService],
-        controllers: [Auth_controller_1.AuthController],
-        providers: [Auth_Service_1.AuthService],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.User_Table]),
+            jwt_1.JwtModule.register({
+                secret: '둠바두마',
+                signOptions: { expiresIn: `3000s` },
+            }),
+        ],
+        exports: [typeorm_1.TypeOrmModule],
+        controllers: [auth_contorller_1.AuthController],
+        providers: [auth_service_1.AuthService, users_service_1.UsersService],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;
-//# sourceMappingURL=Auth.module.js.map
+//# sourceMappingURL=auth.module.js.map

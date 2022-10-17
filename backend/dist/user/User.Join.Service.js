@@ -21,12 +21,26 @@ let AuthService = class AuthService {
     constructor(AuthRepository) {
         this.AuthRepository = AuthRepository;
     }
-    async Join(User_Id, User_Pw) {
+    async Join(User_Id, User_Pw, User_NickName) {
         console.log(User_Id);
         const NewB = await this.AuthRepository.findOne({ where: { User_Id } });
         if (NewB) {
             throw new common_1.UnauthorizedException('존재하는 아이디');
+        }
+        else {
+            await this.AuthRepository.save({
+                User_Id,
+                User_Pw,
+                User_NickName,
+            });
             return;
+        }
+    }
+    async Login(User_Id, User_Pw) {
+        console.log(User_Id);
+        const NewB = await this.AuthRepository.findOne({ where: { User_Id } });
+        if (NewB) {
+            throw new common_1.UnauthorizedException('존재하는 아이디');
         }
         else {
             await this.AuthRepository.save({

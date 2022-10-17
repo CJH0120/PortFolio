@@ -8,37 +8,52 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const user_entity_1 = require("../entity/user.entity");
-const typeorm_2 = require("typeorm");
+const users_service_1 = require("../users/users.service");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    constructor(AuthRepository) {
-        this.AuthRepository = AuthRepository;
+    constructor(userSerivce, jwtServiee) {
+        this.userSerivce = userSerivce;
+        this.jwtServiee = jwtServiee;
     }
-    async Join(User_Id, User_Pw) {
-        const NewB = await this.AuthRepository.findOne({ where: { User_Id } });
-        if (NewB) {
-            throw new common_1.UnauthorizedException('존재하는 아이디');
-            return;
+    async JoinUser(NB) {
+        const userFind = await this.userSerivce.FindbyID({
+            where: { User_Id: NB.User_Id },
+        });
+        const userNickName = await this.userSerivce.FindbyID({
+            where: { User_NickName: NB.User_NickName },
+        });
+        if (userFind) {
+            throw new common_1.HttpException('아이디가 중복', common_1.HttpStatus.BAD_REQUEST);
         }
-        else {
-            await this.AuthRepository.save({
-                User_Id,
-                User_Pw,
-            });
+        if (userNickName) {
+            throw new common_1.HttpException('닉네임 중복', common_1.HttpStatus.BAD_REQUEST);
         }
+        return await this.userSerivce.Save(NB);
+    }
+    async Login(Id, Pw) {
+        const userFind = await this.userSerivce.FindbyID({
+            where: { User_Id: Id },
+        });
+        if (!userFind || Pw !== userFind.User_Pw) {
+            throw new common_1.HttpException(`일치하는 데이터가 없습니다`, common_1.HttpStatus.BAD_REQUEST);
+        }
+        const payload = {
+            id: userFind.User_Id,
+            userNick: userFind.User_NickName,
+        };
+        return {
+            assessToken: this.jwtServiee.sign(payload),
+            nickname: userFind.User_NickName,
+        };
     }
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User_Table)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __metadata("design:paramtypes", [users_service_1.UsersService,
+        jwt_1.JwtService])
 ], AuthService);
 exports.AuthService = AuthService;
-//# sourceMappingURL=Auth.Service.js.map
+//# sourceMappingURL=auth.service.js.map

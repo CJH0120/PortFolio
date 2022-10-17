@@ -2,12 +2,15 @@ import classNames from "classnames/bind"
 import Styles from "@Style/TextArea.module.scss"
 import React, { KeyboardEvent, useState } from "react"
 import handler from "pages/api/hello"
+import { LoginStore } from "store/Idstore"
 
 type TextAreaProps = {
    Text: string
 }
 export const TextArea = ({ Text }: TextAreaProps) => {
    const cx = classNames.bind(Styles)
+   const { Login, setLogin } = LoginStore()
+
    const [areaValue, setAreaValue] = useState<string>(
       Text ? Text : "작성된 코멘트가 없습니다"
    )
@@ -37,9 +40,11 @@ export const TextArea = ({ Text }: TextAreaProps) => {
                {areaValue}
             </div>
          </div>
-         <button onClick={handleClick} className={cx("BTN")}>
-            {isClick ? "저장하기" : "수정하기"}
-         </button>
+         {Login && (
+            <button onClick={handleClick} className={cx("BTN")}>
+               {isClick ? "저장하기" : "수정하기"}
+            </button>
+         )}
       </div>
    )
 }

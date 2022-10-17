@@ -10,7 +10,7 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../entity/user.entity");
-const User_Join_controller_1 = require("./User.Join.controller");
+const User_controller_1 = require("./User.controller");
 const User_Join_Service_1 = require("./User.Join.Service");
 let AuthModule = class AuthModule {
 };
@@ -18,7 +18,7 @@ AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.User_Table])],
         exports: [User_Join_Service_1.AuthService],
-        controllers: [User_Join_controller_1.AuthController],
+        controllers: [User_controller_1.AuthController],
         providers: [User_Join_Service_1.AuthService],
     })
 ], AuthModule);

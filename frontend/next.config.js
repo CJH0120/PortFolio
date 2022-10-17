@@ -5,7 +5,7 @@ const nextConfig = {
    async rewrites() {
       return [
          {
-            source: "/:path*",
+            source: "/api/:path*",
             destination: "http://localhost:3333/:path*",
          },
          {
@@ -16,7 +16,5 @@ const nextConfig = {
    },
 }
 
-module.exports = nextConfig
-
 const removeImports = require("next-remove-imports")()
-module.exports = removeImports({})
+module.exports = removeImports({ ...nextConfig })

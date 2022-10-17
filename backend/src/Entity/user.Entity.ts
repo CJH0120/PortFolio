@@ -9,14 +9,17 @@ import { User_Info } from './user.Info.entity';
 
 @Entity({ name: 'User_Table' })
 export class User_Table {
-  @PrimaryGeneratedColumn('uuid')
-  User_Num: string;
+  @PrimaryGeneratedColumn('increment')
+  User_Num: number;
 
   @Column()
   User_Id: string;
 
   @Column()
   User_Pw: string;
+
+  @Column()
+  User_NickName: string;
 
   @CreateDateColumn()
   User_regDate: Date;

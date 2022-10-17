@@ -20,18 +20,28 @@ let AuthController = class AuthController {
         this.AuthService = AuthService;
     }
     async Join(body) {
-        await this.AuthService.Join(body.User_Id, body.User_Pw);
+        await this.AuthService.Join(body.User_Id, body.User_Pw, body.User_NickName);
+    }
+    async Join(body) {
+        await this.AuthService.Join(body.User_Id, body.User_Pw, body.User_NickName);
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('Login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "Join", null);
+__decorate([
+    (0, common_1.Post)('Join'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "Join", null);
 AuthController = __decorate([
-    (0, common_1.Controller)('Join'),
+    (0, common_1.Controller)('Auth'),
     __metadata("design:paramtypes", [User_Join_Service_1.AuthService])
 ], AuthController);
 exports.AuthController = AuthController;

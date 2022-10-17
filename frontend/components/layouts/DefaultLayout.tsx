@@ -2,7 +2,8 @@ import classNames from "classnames/bind"
 import Styles from "@Style/DefaultLayout.module.scss"
 import React, { useState } from "react"
 import ReviseBox from "components/control/ReviseBox"
-import { Login } from "components/control/Login"
+import {  LoginPage } from "components/control/Login"
+import { LoginStore, NickNamestore } from "store/Idstore"
 
 interface DefaultLayoutProps {
    children: React.ReactNode
@@ -10,7 +11,8 @@ interface DefaultLayoutProps {
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
    const cx = classNames.bind(Styles)
    const [islogin, setIsLogin] = useState<boolean>(false)
-
+   const { Login, setLogin } = LoginStore()
+   const { Nickname } = NickNamestore()
    return (
       <div className={cx("Wrap")}>
          <div className={cx("Contain")}>
@@ -51,7 +53,11 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                         setIsLogin(true)
                      }}
                   >
-                     <button>Login</button>
+                     {Login ? (
+                        <button>{Nickname}</button>
+                     ) : (
+                        <button>Login</button>
+                     )}
                   </div>
                </div>
             </div>
@@ -63,7 +69,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
             {/* 꾸미는 영역 */}
          </div>
          {islogin && (
-            <Login
+            <LoginPage
                onClick={() => {
                   setIsLogin(false)
                }}
