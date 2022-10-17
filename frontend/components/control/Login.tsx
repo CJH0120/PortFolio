@@ -12,6 +12,40 @@ export const LoginPage = ({ onClick }: LoginProps) => {
    const [userId, setUserId] = useState<string>("")
    const [userPw, setUserPw] = useState<string>("")
    const { Nickname, setNickname } = NickNamestore()
+   const LoginHandler = () => {
+      fetch(`/api/auth/Login`, {
+         method: "POST",
+         headers: {
+            Accept: "application.json",
+            "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+            User_Id: userId,
+            User_Pw: userPw,
+         }),
+      })
+         .then((response) => {
+            if (!response.ok) {
+               return response.text().then((response) => {
+                  throw new Error(response)
+               })
+            }
+            return response
+         })
+         .then((res) => {
+            let Token = res?.headers?.get("cookies")
+            let Nick = res?.headers?.get("is_login")
+            localStorage.setItem("Authorization", Token!!)
+            localStorage.setItem("nickname", Nick!)
+            setNickname(Nick!)
+            setLogin(true)
+         })
+         .then(onClick)
+         .catch((err) => {
+            console.log("caught it!", err)
+         })
+   }
+
    const cx = classNames.bind(Styles)
    return (
       <div className={cx("Wrap")}>
@@ -47,34 +81,7 @@ export const LoginPage = ({ onClick }: LoginProps) => {
                      name=""
                      id=""
                      className={cx("Login-Content-submit")}
-                     onClick={() => {
-                        fetch(`/api/auth/Login`, {
-                           method: "POST",
-                           headers: {
-                              Accept: "application.json",
-                              "Content-Type": "application/json",
-                           },
-                           body: JSON.stringify({
-                              User_Id: userId,
-                              User_Pw: userPw,
-                           }),
-                        })
-                           .then((response) => {
-                              // reponse가 ok가 아닐 때
-                              if (!response.ok) {
-                                 return response.text().then((response) => {
-                                    throw new Error(response)
-                                 })
-                              }
-                              return response.json()
-                           })
-                           .then((result) => {
-                              alert(`회원가입 완료`)
-                           })
-                           .catch((err) => {
-                              console.log("caught it!", err)
-                           })
-                     }}
+                     onClick={LoginHandler}
                   />
                </div>
             </div>

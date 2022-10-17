@@ -25,7 +25,7 @@ AppModule = __decorate([
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'root',
+                password: '1234',
                 database: 'PortFolio',
                 entities: [user_entity_1.User_Table, user_Info_entity_1.User_Info],
                 synchronize: false,

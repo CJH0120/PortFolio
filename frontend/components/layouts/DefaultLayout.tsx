@@ -1,9 +1,10 @@
 import classNames from "classnames/bind"
 import Styles from "@Style/DefaultLayout.module.scss"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReviseBox from "components/control/ReviseBox"
-import {  LoginPage } from "components/control/Login"
+import { LoginPage } from "components/control/Login"
 import { LoginStore, NickNamestore } from "store/Idstore"
+import User from "./User"
 
 interface DefaultLayoutProps {
    children: React.ReactNode
@@ -12,7 +13,19 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
    const cx = classNames.bind(Styles)
    const [islogin, setIsLogin] = useState<boolean>(false)
    const { Login, setLogin } = LoginStore()
-   const { Nickname } = NickNamestore()
+   const { Nickname, setNickname } = NickNamestore()
+
+   useEffect(() => {
+      let nick = localStorage.getItem("nickname")
+      let Authorization = localStorage.getItem("Authorization")
+
+      if (nick !== null && Authorization !== null) {
+         setNickname(nick!)
+         setLogin(true)
+      } else {
+         setLogin(false)
+      }
+   }, [])
    return (
       <div className={cx("Wrap")}>
          <div className={cx("Contain")}>
@@ -47,16 +60,17 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                         bolder="light"
                      />
                   </div>
-                  <div
-                     className={cx("HeaderItem-Login")}
-                     onClick={() => {
-                        setIsLogin(true)
-                     }}
-                  >
+                  <div className={cx("HeaderItem-Login")}>
                      {Login ? (
-                        <button>{Nickname}</button>
+                        <User />
                      ) : (
-                        <button>Login</button>
+                        <button
+                           onClick={() => {
+                              setIsLogin(true)
+                           }}
+                        >
+                           Login
+                        </button>
                      )}
                   </div>
                </div>

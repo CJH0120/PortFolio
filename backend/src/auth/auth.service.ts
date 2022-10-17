@@ -18,7 +18,7 @@ export class AuthService {
       where: { User_NickName: NB.User_NickName },
     });
     if (userFind) {
-      throw new HttpException('아이디가 중복', HttpStatus.BAD_REQUEST);
+      throw new HttpException('아이디 중복', HttpStatus.BAD_REQUEST);
     }
     if (userNickName) {
       throw new HttpException('닉네임 중복', HttpStatus.BAD_REQUEST);
@@ -32,7 +32,7 @@ export class AuthService {
     });
     if (!userFind || Pw !== userFind.User_Pw) {
       throw new HttpException(
-        `일치하는 데이터가 없습니다`,
+        `일치하는 정보가 없습니다`,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -40,8 +40,9 @@ export class AuthService {
       id: userFind.User_Id,
       userNick: userFind.User_NickName,
     };
+
     return {
-      assessToken: this.jwtServiee.sign(payload),
+      assessToken: await this.jwtServiee.sign(payload),
       nickname: userFind.User_NickName,
     };
   }
