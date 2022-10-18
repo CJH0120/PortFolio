@@ -23,7 +23,7 @@ const ReviseBox = React.forwardRef(
    (
       {
          FieldType,
-         Text = "Default",
+         Text,
          size = "Small",
          bolder = "light",
          onclick: handleClick = () => {},
@@ -32,9 +32,8 @@ const ReviseBox = React.forwardRef(
    ) => {
       const cx = classNames.bind(Styles)
       const [isChange, setIsChange] = useState<boolean>(false)
-      const [textVal, setTextVal] = useState<string>(Text)
+      const [textVal, setTextVal] = useState<string>(!Text ? "Default" : Text!)
       const { Login, setLogin } = LoginStore()
-
       return (
          <div className={cx("Wrap")} onClick={handleClick}>
             <div className={cx("Btn-Text")}>

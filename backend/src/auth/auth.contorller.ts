@@ -20,7 +20,7 @@ export class AuthController {
   ): Promise<any> {
     const aa = await this.authService.Login(UserDTO.User_Id, UserDTO.User_Pw);
     response.header('Cookies', aa.assessToken);
-    response.header('is_Login', aa.nickname);
+    response.header('is_Login', encodeURI(aa.nickname));
     return response.status(HttpStatus.OK).send;
   }
 }

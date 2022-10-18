@@ -7,7 +7,7 @@ export default () => ({
     user: process.env.DATABASE_USERNAME || 'root',
     pass: process.env.DATABASE_PASSWORD || 'password',
     name: process.env.DATABASE_NAME || 'sample',
-  
+    entities: [__dirname + 'entities/**/*.entity.ts'],
   },
   auth: {
     jwt_secret_key: '둠칫둠칫',

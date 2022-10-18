@@ -8,9 +8,9 @@ import { AuthModule } from './auth/auth.module';
 import typeormConfig from './config/typeorm.config';
 import { User_Table } from './entity/user.entity';
 import { User_Info } from './entity/user.Info.entity';
-import { User_Kategorie } from './entity/user.Kategorie.entity';
+import { User_Categorie } from './Entity/user.Categorie.entity';
 import { InfoModule } from './Info/info.module';
-import { KategorieModule } from './Kategorie/Kategorie.module';
+import { CategorieModule } from './Categorie/Categorie.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -28,14 +28,14 @@ import { UsersModule } from './users/users.module';
         username: configService.get('database.user'),
         password: configService.get('database.pass'),
         database: configService.get('database.name'),
-        entities: [User_Table, User_Info, User_Kategorie],
+        entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     UsersModule,
     AuthModule,
-    KategorieModule,
+    CategorieModule,
     InfoModule,
   ],
 

@@ -5,22 +5,28 @@ import ReviseBox from "components/control/ReviseBox"
 import { LoginPage } from "components/control/Login"
 import { LoginStore, NickNamestore } from "store/Idstore"
 import User from "./User"
-
+interface DefaultLayoutData {
+   Title_Logo: string
+   Title_1: string
+   Title_2: string
+   Title_3: string
+   Title_4: string
+}
 interface DefaultLayoutProps {
    children: React.ReactNode
+   Data: DefaultLayoutData
 }
-const DefaultLayout = ({ children }: DefaultLayoutProps) => {
+const DefaultLayout = ({ children, Data }: DefaultLayoutProps) => {
    const cx = classNames.bind(Styles)
    const [islogin, setIsLogin] = useState<boolean>(false)
    const { Login, setLogin } = LoginStore()
    const { Nickname, setNickname } = NickNamestore()
-
    useEffect(() => {
       let nick = localStorage.getItem("nickname")
       let Authorization = localStorage.getItem("Authorization")
-
+      let Decod = decodeURIComponent(nick!)
       if (nick !== null && Authorization !== null) {
-         setNickname(nick!)
+         setNickname(Decod)
          setLogin(true)
       } else {
          setLogin(false)
@@ -31,7 +37,12 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
          <div className={cx("Contain")}>
             <div className={cx("HeaderItem")}>
                <div className={cx("HeaderItem-Logo")}>
-                  <ReviseBox FieldType="/" size="Medium" bolder="bolde" />
+                  <ReviseBox
+                     FieldType="/"
+                     size="Medium"
+                     bolder="bolde"
+                     Text={Data?.Title_Logo}
+                  />
                </div>
 
                <div className={cx("Header-SubWrap")}>
@@ -40,24 +51,28 @@ const DefaultLayout = ({ children }: DefaultLayoutProps) => {
                         FieldType="/Category/One"
                         size="Small"
                         bolder="light"
+                        Text={Data?.Title_1}
                      />
 
                      <ReviseBox
                         FieldType="/Category/Two"
                         size="Small"
                         bolder="light"
+                        Text={Data?.Title_2}
                      />
 
                      <ReviseBox
                         FieldType="/Category/Three"
                         size="Small"
                         bolder="light"
+                        Text={Data?.Title_3}
                      />
 
                      <ReviseBox
                         FieldType="/Category/Four"
                         size="Small"
                         bolder="light"
+                        Text={Data?.Title_4}
                      />
                   </div>
                   <div className={cx("HeaderItem-Login")}>

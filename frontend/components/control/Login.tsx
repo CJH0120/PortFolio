@@ -37,11 +37,13 @@ export const LoginPage = ({ onClick }: LoginProps) => {
             let Nick = res?.headers?.get("is_login")
             localStorage.setItem("Authorization", Token!!)
             localStorage.setItem("nickname", Nick!)
-            setNickname(Nick!)
+            let Decod = decodeURIComponent(Nick!)
+            setNickname(Decod)
             setLogin(true)
          })
          .then(onClick)
          .catch((err) => {
+            alert("로그인실패")
             console.log("caught it!", err)
          })
    }

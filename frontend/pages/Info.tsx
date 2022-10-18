@@ -33,7 +33,6 @@ export const Info = ({ Data }: UserInfoData) => {
          User_MarkDown: "김개발 입니다",
       },
    ])
-   console.log(Data)
    return (
       <div className={cx("Content-Wrap")}>
          <div className={cx("Content-Wrap-Left")}>

@@ -1,6 +1,6 @@
 import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { KategorieService } from 'src/Kategorie/Kategorie.service';
+import { CategorieService } from 'src/Categorie/Categorie.service';
 import { Repository } from 'typeorm';
 import { InfoService } from './info.service';
 
@@ -8,7 +8,7 @@ import { InfoService } from './info.service';
 export class InfoController {
   constructor(
     private readonly infoService: InfoService, // private readonly KategorieService: KategorieService,
-    private KategorieService: KategorieService,
+    private KategorieService: CategorieService,
   ) {}
 
   @Get()

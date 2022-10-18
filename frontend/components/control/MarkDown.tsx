@@ -2,7 +2,7 @@ import type { NextPage } from "next"
 import "@uiw/react-md-editor/markdown-editor.css"
 import "@uiw/react-markdown-preview/markdown.css"
 import dynamic from "next/dynamic"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import classNames from "classnames/bind"
 import Styles from "@Style/Markdown.module.scss"
 import { LoginStore } from "store/Idstore"
@@ -15,11 +15,12 @@ interface MarkDownPros {
 const MarkDown = ({ Data }: MarkDownPros) => {
    const cx = classNames.bind(Styles)
    const { Login, setLogin } = LoginStore()
-   const Text: string = Data
-   console.log(Text)
-   const [md, setMd] = useState<string | undefined>(Text)
-   const [setting, setSetting] = useState<boolean>(false)
+   const [md, setMd] = useState<string | undefined>()
+   useEffect(() => {
+      setMd(!Data ? "아직 작성된 글이 없습니다" : Data)
+   }, [md])
 
+   const [setting, setSetting] = useState<boolean>(false)
    return (
       <div className={cx("Wrap")}>
          <div>

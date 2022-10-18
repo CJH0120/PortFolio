@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User_Info } from 'src/entity/user.Info.entity';
-import { KategorieRepository } from 'src/Kategorie/Kategorie.Repository';
-import { KategorieService } from 'src/Kategorie/Kategorie.service';
+import { CategorieRepository } from 'src/Categorie/Categorie.Repository';
+import { CategorieService } from 'src/Categorie/Categorie.service';
 import { InfoRepository } from './info.Repository';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class InfoService {
   constructor(
     @InjectRepository(User_Info)
     private readonly InfoRepository: InfoRepository,
-    private readonly KategorieService: KategorieService,
+    private readonly KategorieService: CategorieService,
   ) {}
 
   async Index(usernum: number): Promise<any> {
