@@ -1,4 +1,3 @@
-import { Login } from "components/control/Login"
 import create from "zustand"
 
 interface ID {
@@ -28,7 +27,7 @@ export const LoginStore = create<LoginStoreProps>((set) => ({
 }))
 
 interface Nickname {
-   Nickname: string|null
+   Nickname: string | null
    setNickname: (id: string) => void
 }
 

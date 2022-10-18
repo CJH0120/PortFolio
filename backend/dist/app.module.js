@@ -39,7 +39,7 @@ AppModule = __decorate([
                     password: configService.get('database.pass'),
                     database: configService.get('database.name'),
                     entities: [user_entity_1.User_Table, user_Info_entity_1.User_Info, user_Kategorie_entity_1.User_Kategorie],
-                    synchronize: false,
+                    synchronize: true,
                 }),
                 inject: [config_1.ConfigService],
             }),

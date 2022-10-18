@@ -29,7 +29,7 @@ import { UsersModule } from './users/users.module';
         password: configService.get('database.pass'),
         database: configService.get('database.name'),
         entities: [User_Table, User_Info, User_Kategorie],
-        synchronize: false,
+        synchronize: true,
       }),
       inject: [ConfigService],
     }),
