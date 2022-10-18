@@ -11,26 +11,17 @@ import { User_Table } from './user.entity';
 
 @Entity({ name: 'User_Info' })
 export class User_Info {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn()
   User_Num: number;
 
-  @Column()
-  User_Phone: string;
-
-  @Column()
+  @Column({ default: null })
   User_Text: string;
 
-  @Column()
-  User_Birth: string;
+  @Column({ default: null })
+  User_Comment: string;
 
-  @Column()
-  User_Adress: string;
-
-  @Column()
-  User_Email: string;
-
-  @Column()
-  User_Education: string;
+  @Column({ default: null })
+  User_Img: string;
 
   @CreateDateColumn()
   User_CreatDate: Date;

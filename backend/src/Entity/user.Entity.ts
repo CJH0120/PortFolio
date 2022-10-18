@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User_Info } from './user.Info.entity';
+import { User_Kategorie } from './user.Kategorie.entity';
 
 @Entity({ name: 'User_Table' })
 export class User_Table {
@@ -26,4 +27,7 @@ export class User_Table {
 
   @OneToMany(() => User_Info, (user_info) => user_info.User_Num)
   user_infos: User_Info[];
+
+  @OneToMany(() => User_Kategorie, (user_k) => user_k.User_Num)
+  User_Kategorie: User_Kategorie[];
 }

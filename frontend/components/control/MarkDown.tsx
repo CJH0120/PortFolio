@@ -9,12 +9,17 @@ import { LoginStore } from "store/Idstore"
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
    ssr: false,
 })
-const MarkDown: NextPage = () => {
+interface MarkDownPros {
+   Data: string
+}
+const MarkDown = ({ Data }: MarkDownPros) => {
    const cx = classNames.bind(Styles)
    const { Login, setLogin } = LoginStore()
-
-   const [md, setMd] = useState<string | undefined>("# Hello World")
+   const Text: string = Data
+   console.log(Text)
+   const [md, setMd] = useState<string | undefined>(Text)
    const [setting, setSetting] = useState<boolean>(false)
+
    return (
       <div className={cx("Wrap")}>
          <div>

@@ -27,10 +27,7 @@ let AuthController = class AuthController {
         const aa = await this.authService.Login(UserDTO.User_Id, UserDTO.User_Pw);
         response.header('Cookies', aa.assessToken);
         response.header('is_Login', aa.nickname);
-        console.log();
-        return response
-            .status(common_1.HttpStatus.OK)
-            .send({ Ninkname: aa.nickname });
+        return response.status(common_1.HttpStatus.OK).send;
     }
 };
 __decorate([

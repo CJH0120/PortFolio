@@ -18,6 +18,7 @@ export const TextArea = ({ Text }: TextAreaProps) => {
    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       setIsClick(!isClick)
    }
+   console.log(Login)
    return (
       <div className={cx("Wrap")}>
          <div className={cx("Wrap-sub")}>

@@ -8,30 +8,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const auth_module_1 = require("./auth/auth.module");
+const typeorm_config_1 = require("./config/typeorm.config");
 const user_entity_1 = require("./entity/user.entity");
 const user_Info_entity_1 = require("./entity/user.Info.entity");
+const user_Kategorie_entity_1 = require("./entity/user.Kategorie.entity");
+const info_module_1 = require("./Info/info.module");
+const Kategorie_module_1 = require("./Kategorie/Kategorie.module");
 const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'localhost',
-                port: 3306,
-                username: 'root',
-                password: '1234',
-                database: 'PortFolio',
-                entities: [user_entity_1.User_Table, user_Info_entity_1.User_Info],
-                synchronize: false,
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+                load: [typeorm_config_1.default],
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                imports: [config_1.ConfigModule],
+                useFactory: (configService) => ({
+                    type: 'mysql',
+                    host: configService.get('database.host'),
+                    port: Number(configService.get('database.port')),
+                    username: configService.get('database.user'),
+                    password: configService.get('database.pass'),
+                    database: configService.get('database.name'),
+                    entities: [user_entity_1.User_Table, user_Info_entity_1.User_Info, user_Kategorie_entity_1.User_Kategorie],
+                    synchronize: false,
+                }),
+                inject: [config_1.ConfigService],
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthModule,
+            Kategorie_module_1.KategorieModule,
+            info_module_1.InfoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

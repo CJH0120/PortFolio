@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User_Table = void 0;
 const typeorm_1 = require("typeorm");
 const user_Info_entity_1 = require("./user.Info.entity");
+const user_Kategorie_entity_1 = require("./user.Kategorie.entity");
 let User_Table = class User_Table {
 };
 __decorate([
@@ -38,6 +39,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => user_Info_entity_1.User_Info, (user_info) => user_info.User_Num),
     __metadata("design:type", Array)
 ], User_Table.prototype, "user_infos", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_Kategorie_entity_1.User_Kategorie, (user_k) => user_k.User_Num),
+    __metadata("design:type", Array)
+], User_Table.prototype, "User_Kategorie", void 0);
 User_Table = __decorate([
     (0, typeorm_1.Entity)({ name: 'User_Table' })
 ], User_Table);

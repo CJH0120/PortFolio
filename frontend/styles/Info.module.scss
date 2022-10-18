@@ -6,17 +6,41 @@
 
    .Content-Wrap-Left {
       width: 70%;
+      padding: 20px;
    }
    .Content-Wrap-Right {
       width: 30%;
       padding: 20px;
-    
-      position: relative;
       .User-Info-Photo {
-         height: auto;
-
+         position: relative;
          border-radius: 12px;
          overflow: hidden;
+      }
+      .PhotoChange {
+         &:hover {
+            .changebox {
+               display: flex;
+            }
+         }
+      }
+      .changebox {
+         height: 380px;
+         cursor: pointer;
+         display: none;
+         border-radius: 12px;
+         top: 0px;
+         left: 0px;
+         position: absolute;
+         width: 100%;
+         background: black;
+         opacity: 0.5;
+         overflow: hidden;
+         justify-content: center;
+         align-items: center;
+         span {
+            font-size: 20px;
+            color: #fff;
+         }
       }
    }
 }

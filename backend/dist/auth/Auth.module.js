@@ -14,15 +14,22 @@ const auth_contorller_1 = require("./auth.contorller");
 const auth_service_1 = require("./auth.service");
 const users_service_1 = require("../users/users.service");
 const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.User_Table]),
-            jwt_1.JwtModule.register({
-                secret: '둠바두마',
-                signOptions: { expiresIn: `3000s` },
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: async (configService) => ({
+                    secret: configService.get('auth.jwt_secret_key'),
+                    signOptions: {
+                        expiresIn: `${configService.get('auth.JWT_EXPIRATION_TIME')}m`,
+                    },
+                }),
             }),
         ],
         exports: [typeorm_1.TypeOrmModule],
