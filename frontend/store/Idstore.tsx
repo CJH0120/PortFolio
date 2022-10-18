@@ -1,4 +1,4 @@
-import create from "zustand"
+gimport create from "zustand"
 
 interface ID {
    id: string

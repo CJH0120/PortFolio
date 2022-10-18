@@ -19,14 +19,14 @@ backend/coverage
 backend/.nyc_output
 
 # IDEs and editors
-backend//.idea
+backend/.idea
 backend/.project
 backend/.classpath
 backend/.c9/
 backend/*.launch
 backend/.settings/
 backend/*.sublime-workspace
- backend/.dev.env
+backend/*
 # IDE - VSCode
 backend/.vscode/*
 !.vscode/settings.json
