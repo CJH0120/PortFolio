@@ -22,7 +22,7 @@ backend/.DS_Store
 # Tests
 backend/coverage
 backend/.nyc_output
-
+backend/ *.env
 # IDEs and editors
 backend/.idea
 backend/.project
