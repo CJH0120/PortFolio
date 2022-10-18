@@ -26,7 +26,7 @@ backend/.c9/
 backend/*.launch
 backend/.settings/
 backend/*.sublime-workspace
-backend/ ..dev.env
+ backend/.dev.env
 # IDE - VSCode
 backend/.vscode/*
 !.vscode/settings.json
