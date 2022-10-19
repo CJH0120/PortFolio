@@ -5,8 +5,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { User_Categorie } from './user.Categorie';
 import { User_Info } from './user.Info.entity';
-import { User_Categorie } from './user.Categorie.entity';
 
 @Entity({ name: 'User_Table' })
 export class User_Table {
