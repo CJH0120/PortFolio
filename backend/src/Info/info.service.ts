@@ -10,14 +10,14 @@ export class InfoService {
   constructor(
     @InjectRepository(User_Info)
     private readonly InfoRepository: InfoRepository,
-    private readonly KategorieService: CategorieService,
+    private readonly CategorieService: CategorieService,
   ) {}
 
   async Index(usernum: number): Promise<any> {
-    const Kategorie = await this.KategorieService.find(1);
+    const Categorie = await this.CategorieService.find(1);
     const Info = await this.InfoRepository.findOne({
       where: { User_Num: usernum },
     });
-    return { Kategorie: Kategorie, Info: Info };
+    return { Categorie: Categorie, Info: Info };
   }
 }

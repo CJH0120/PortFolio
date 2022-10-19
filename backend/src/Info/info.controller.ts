@@ -7,8 +7,8 @@ import { InfoService } from './info.service';
 @Controller('Idx')
 export class InfoController {
   constructor(
-    private readonly infoService: InfoService, // private readonly KategorieService: KategorieService,
-    private KategorieService: CategorieService,
+    private readonly infoService: InfoService,
+    private CategorieService: CategorieService,
   ) {}
 
   @Get()
@@ -16,8 +16,4 @@ export class InfoController {
     const UserInfo = await this.infoService.Index(1);
     return res.status(HttpStatus.OK).send(UserInfo);
   }
-
-  // async Idx2(@Res() res: Response): Promise<any> {
-  //   const UserInfo = await this.
-  // }
 }
