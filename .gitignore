@@ -1,43 +1,11 @@
 # compiled output
-/dist
+backend/dist
 backend/node_modules
 backend/*.env
-backend/ .env.local
-backend/ .env.development.local
-backend/ .env.test.local
-backend/ .env.production.local
 
-# Logs
-backend/logs
-backend/*.log
-backend/npm-debug.log*
-backend/pnpm-debug.log*
-backend/yarn-debug.log*
-backend/yarn-error.log*
-backend/lerna-debug.log*
 
-# OS
-backend/.DS_Store
 
-# Tests
-backend/coverage
-backend/.nyc_output
-backend/ *.env
-# IDEs and editors
-backend/.idea
-backend/.project
-backend/.classpath
-backend/.c9/
-backend/*.launch
-backend/.settings/
-backend/*.sublime-workspace
-backend/*
-# IDE - VSCode
-backend/.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+
 
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -68,7 +36,6 @@ frontend/yarn-error.log*
 frontend/.pnpm-debug.log*
 
 # local env files
-frontend/.env*.local
 
 # vercel
 frontend/.vercel
