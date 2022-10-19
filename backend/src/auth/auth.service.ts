@@ -40,7 +40,6 @@ export class AuthService {
       id: userFind.User_Id,
       userNick: userFind.User_NickName,
     };
-
     return {
       assessToken: await this.jwtServiee.sign(payload),
       nickname: userFind.User_NickName,

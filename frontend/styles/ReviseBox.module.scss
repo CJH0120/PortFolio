@@ -4,9 +4,6 @@
    position: relative;
    .Btn-Text {
       overflow: hidden;
-      width: 150px;
-      height: 39px;
-
       .Not_Active {
          display: none;
       }
@@ -26,8 +23,6 @@
       }
       button {
          cursor: pointer;
-
-         height: 40px;
          padding: 0;
          margin: 0;
          border: none;
@@ -41,8 +36,6 @@
             &:hover {
                color: #a40000;
             }
-          
-          
          }
          &.bolde {
             font-weight: bolder;
@@ -51,12 +44,14 @@
    }
    .Revise {
       position: absolute;
-      top:  70px;
+      left: 50%;
+      transform: translate(-50%, 100%);
+      width: 150px;
       &.medium {
-         left: 42px;
+         top: 80%;
       }
       &.small {
-         left: 42px;
+         top: 100%;
       }
    }
 }

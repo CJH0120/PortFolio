@@ -3,6 +3,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
@@ -10,7 +11,7 @@ import { User_Table } from './user.entity';
 
 @Entity({ name: 'User_Categorie' })
 export class User_Categorie {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({ unique: true })
   User_Num: number;
 
   @Column({ default: null })

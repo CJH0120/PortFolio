@@ -4,6 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -11,7 +12,7 @@ import { User_Table } from './user.entity';
 
 @Entity({ name: 'User_Info' })
 export class User_Info {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({ unique: true })
   User_Num: number;
 
   @Column({ default: null })

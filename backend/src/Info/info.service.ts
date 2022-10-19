@@ -13,11 +13,30 @@ export class InfoService {
     private readonly CategorieService: CategorieService,
   ) {}
 
-  async Index(usernum: number): Promise<any> {
+  async Index(): Promise<any> {
     const Categorie = await this.CategorieService.find(1);
+    return { Categorie: Categorie };
+  }
+  async Info(usernum: number): Promise<any> {
     const Info = await this.InfoRepository.findOne({
       where: { User_Num: usernum },
     });
-    return { Categorie: Categorie, Info: Info };
+    return { Info };
+  }
+  async InfoPost(key: string, values: string): Promise<any> {
+    const PostInfo = await this.InfoRepository.query(
+      `
+      INSERT INTO User_Info
+      (User_Num) Values(1)
+      ON DUPLICATE KEY 
+      UPDATE 
+      ` +
+        key +
+        ` ="` +
+        values +
+        `"
+     `,
+    );
+    return PostInfo;
   }
 }

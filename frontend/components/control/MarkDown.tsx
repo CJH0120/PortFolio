@@ -15,10 +15,8 @@ interface MarkDownPros {
 const MarkDown = ({ Data }: MarkDownPros) => {
    const cx = classNames.bind(Styles)
    const { Login, setLogin } = LoginStore()
-   const [md, setMd] = useState<string | undefined>()
-   useEffect(() => {
-      setMd(!Data ? "아직 작성된 글이 없습니다" : Data)
-   }, [md])
+   const [md, setMd] = useState<string | undefined>(!Data ? "아직 작성된 글이 없습니다" : Data)
+
 
    const [setting, setSetting] = useState<boolean>(false)
    return (

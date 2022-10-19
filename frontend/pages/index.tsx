@@ -5,30 +5,17 @@ import { Info } from "./Info"
 import Idstore from "store/Idstore"
 import Loading from "components/control/Loading"
 import LoadingPg from "components/control/Loading"
-const Home: NextPage = () => {
+const Home: any = () => {
    const [Data, setData] = useState<any>({})
-   const [isLoading, setIsLoading] = useState<boolean>(true)
+   const [Loading, setIsLoading] = useState<boolean>(true)
 
    useEffect(() => {
-      fetch(`/api/Idx`)
+      fetch(`/api/Info`)
          .then((res) => res.json())
-         .then((res) => setData(res))
-         .finally(() => {
-            setIsLoading(false)
-         })
+         .then((res) => setData(res.Info))
+         .finally(() => setIsLoading(false))
    }, [])
-   const { id } = Idstore()
-   return (
-      <div>
-         {isLoading ? (
-            <LoadingPg />
-         ) : (
-            <DefaultLayout Data={Data.Categorie}>
-               <Info Data={Data.Info} />
-            </DefaultLayout>
-         )}
-      </div>
-   )
+   return !Loading && <Info Data={Data} />
 }
 
 export default Home

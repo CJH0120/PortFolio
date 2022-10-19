@@ -37,3 +37,15 @@ export const NickNamestore = create<Nickname>((set) => ({
       set((state) => ({ Nickname: Nickname }))
    },
 }))
+
+interface LogoTitle {
+   LogoTitle: string | "Default"
+   setLogoTitle: (id: string) => void
+}
+
+export const LogoTitleStore = create<LogoTitle>((set) => ({
+   LogoTitle: "Default",
+   setLogoTitle(LogoTitle) {
+      set((state) => ({ LogoTitle: LogoTitle }))
+   },
+}))

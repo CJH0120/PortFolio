@@ -21,4 +21,9 @@ export class UsersService {
   async FindbyNick(User_Id: string): Promise<UserDTO> {
     return await this.userRepository.findOne({ where: { User_Id } });
   }
+  async FindNum(User_NickName: string): Promise<any> {
+    return await (
+      await this.userRepository.findOneBy({ User_NickName: User_NickName })
+    ).User_Num;
+  }
 }

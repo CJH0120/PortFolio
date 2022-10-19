@@ -11,14 +11,13 @@ export const TextArea = ({ Text }: TextAreaProps) => {
    const cx = classNames.bind(Styles)
    const { Login, setLogin } = LoginStore()
 
-   const [areaValue, setAreaValue] = useState<string>(
-      Text ? Text : "작성된 코멘트가 없습니다"
-   )
+   const [areaValue, setAreaValue] = useState<string>(Text ? Text : "x")
    const [isClick, setIsClick] = useState<boolean>(false)
+   const [change, setChange] = useState<boolean>(false)
+
    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
       setIsClick(!isClick)
    }
-   console.log(Login)
    return (
       <div className={cx("Wrap")}>
          <div className={cx("Wrap-sub")}>

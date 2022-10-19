@@ -16,6 +16,8 @@
          align-items: center;
          justify-content: space-between;
          border-bottom: 2px solid;
+         height: 60px;
+         min-width: 1050px;
          .HeaderItem-Logo {
             margin-left: 40px;
          }
@@ -23,25 +25,24 @@
             display: flex;
             align-items: center;
             margin-right: 40px;
-            height: 60px;
             justify-content: space-between;
             .HeaderItem-Categories {
                align-items: center;
                display: flex;
             }
             .HeaderItem-Login {
-               width: 150px;
                text-align: center;
                height: 45px;
+               display: flex;
+               align-items: center  ;
                button {
-                  width: 100px;
+                  width: 120px;
                   padding: 5px;
                   height: 40px;
                   margin: 0;
                   border-radius: 48px;
                   color: white;
                   border: none;
-
                   font-size: 19px;
                   background-color: #940f0f;
                }

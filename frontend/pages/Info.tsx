@@ -18,7 +18,7 @@ const cx = classNames.bind(Styles)
 type UserInfoProps = {
    User_Img: string
    User_Text: string
-   User_MarkDown: string
+   User_Comment: string
 }
 type UserInfoData = {
    Data: UserInfoProps
@@ -63,26 +63,8 @@ export const Info = ({ Data }: UserInfoData) => {
                </div>
             </div>
             <div className={cx("User-MarkDown")}>
-               <TextArea Text={Data?.User_MarkDown} />
+               <TextArea Text={Data?.User_Comment} />
             </div>
-         </div>
-      </div>
-   )
-}
-
-const UserInfo = ({ Data }: UserInfoData) => {
-   const DefaultText: string = `작성한 코멘트가 없습니다`
-   return (
-      <div className={cx("User-Wrap")}>
-         <div className={cx("User-Info")}>
-            <div>
-               <div className={cx("User-Info-Text")}>
-                  <div>{Data?.User_Text ? Data.User_Text : DefaultText}</div>
-               </div>
-            </div>
-         </div>
-         <div className={cx("User-MarkDown")}>
-            <TextArea Text={Data?.User_MarkDown} />
          </div>
       </div>
    )

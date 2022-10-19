@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
-import { getRepositoryToken, InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
 import typeormConfig from 'src/config/typeorm.config';
 import { User_Categorie } from 'src/entity/user.Categorie';
 import { UsersService } from 'src/users/users.service';
-import { getConnection, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CategorieService {
@@ -18,12 +18,9 @@ export class CategorieService {
   async verify(Token: string, nickname: string): Promise<any> {
     const secret = typeormConfig().auth.jwt_secret_key;
     const verify = await this.JwtService.verify(Token, { secret });
-    const userFind: any = await this.userSerivce.FindbyID({
-      where: { User_NickName: verify.userNick },
-    });
-
+    const userFind: any = await this.userSerivce.FindNum(verify.userNick);
     if (verify) {
-      return verify.userNick !== nickname ? false : userFind.User_Num;
+      return userFind !== 1 ? false : userFind;
     }
   }
   async find(number: number): Promise<any> {
@@ -33,16 +30,20 @@ export class CategorieService {
     return a;
   }
 
-  async SaveData(usernum: number, key: string, value: string): Promise<any> {
-    const keys = key;
-    return await getConnection()
-      .createQueryBuilder()
-      .insert()
-      .into(User_Categorie)
-      .values([
-        {
-          User_Num: usernum,
-        },
-      ]);
+  async SaveData(usernum: number, key: string, values: string): Promise<any> {
+    const Inset = this.CategorieRepository.query(
+      `
+      INSERT INTO User_Categorie
+      (User_Num) Values(1)
+      ON DUPLICATE KEY 
+      UPDATE 
+      ` +
+        key +
+        ` ="` +
+        values +
+        `"
+     `,
+    );
+    return Inset;
   }
 }
